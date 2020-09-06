@@ -7,16 +7,16 @@ import androidx.room.*
 interface PartDao {
 
     @Insert
-    fun insertPart(part: Party): Long
+    fun insertPart(part: Part): Long
 
     @Update
-    fun updatePart(part: Party)
+    fun updatePart(part: Part)
 
     @Delete
-    fun deletePart(part: Party)
+    fun deletePart(part: Part)
 
     @Query("select * from parts_table")
-    fun getAllPart(): LiveData<List<Party>>
+    fun getAllPart(): LiveData<List<Part>>
 
     /*@Query("select * from cars where car_id ==:carId ")
     fun getCar(carId: Long): Car

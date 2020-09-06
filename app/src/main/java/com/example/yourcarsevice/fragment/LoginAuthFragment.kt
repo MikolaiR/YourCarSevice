@@ -1,5 +1,6 @@
 package com.example.yourcarsevice.fragment
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,6 +20,12 @@ class LoginAuthFragment : Fragment() {
 
     private lateinit var textLoginInputEmail: TextInputLayout
     private lateinit var textLoginInputPassword: TextInputLayout
+    private val sharedPrefs by lazy {
+        context?.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,9 +37,9 @@ class LoginAuthFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        /* if (sharedPrefs?.getString(BEARER_TOKEN, "error") != "error") {
-             findNavController().navigate(R.id.action_LoginFragment_to_PartFragment)
-         }*/
+         if (sharedPrefs?.getString(BEARER_TOKEN, "error") != "error") {
+            findNavController().navigate(R.id.action_LoginFragment_to_PartFragment)
+        }
         textLoginInputEmail = view.findViewById(R.id.textLoginInputEmail)
         textLoginInputPassword = view.findViewById(R.id.textLoginInputPassword)
 
@@ -43,6 +50,7 @@ class LoginAuthFragment : Fragment() {
                     textLoginInputPassword.editText?.text.toString()
                 )
             )
+            findNavController().navigate(R.id.action_LoginFragment_to_PartFragment)
         }
 
         view.findViewById<Button>(R.id.button_registration).setOnClickListener {

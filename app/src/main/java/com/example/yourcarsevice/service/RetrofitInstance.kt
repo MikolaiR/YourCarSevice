@@ -1,6 +1,7 @@
 package com.example.retrofitmvvm.service
 
 import android.util.Log
+import com.example.yourcarsevice.service.ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
@@ -8,7 +9,7 @@ private const val BASE_URL = "http://fathomless-ocean-27361.herokuapp.com/"
 
 class RetrofitInstance {
         private var retrofit: Retrofit? = null
-        fun getService():LoginApiService{
+        fun getService(): ApiService {
             if (retrofit == null){
                 Log.i("result", "getService: ON")
                 retrofit = Retrofit.Builder()
@@ -16,6 +17,6 @@ class RetrofitInstance {
                     .baseUrl(BASE_URL)
                     .build()
             }
-            return retrofit?.create(LoginApiService::class.java)!!
+            return retrofit?.create(ApiService::class.java)!!
         }
 }

@@ -1,16 +1,15 @@
 package com.example.yourcarsevice.adpter
 
-import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.yourcarsevice.R
-import com.example.yourcarsevice.model.room.Party
+import com.example.yourcarsevice.model.room.Part
 
 class MyItemRecyclerViewAdapter(
-    private val values: List<Party>
+    private val values: List<Part>
 ) : RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
