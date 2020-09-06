@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.yourcarsevice.fragment.LoginAuthFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_auth_login">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_LoginFragment_to_PartFragment"
+            app:destination="@id/partFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.yourcarsevice.fragment.RegistrationAuthFragment"
+        android:label="Registration"
+        tools:layout="@layout/fragment_auth_registration">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/partFragment"
+        android:name="com.example.yourcarsevice.fragment.PartItemFragment"
+        android:label="List parts"
+        tools:layout="@layout/fragment_item_party">
+
+        <action
+            android:id="@+id/action_LoginFragment_to_PartFragment"
+            app:destination="@id/registrationFragment" />
+    </fragment>
+
+</navigation>
