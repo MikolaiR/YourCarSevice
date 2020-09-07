@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.example.yourcarsevice.R
-import com.example.yourcarsevice.viewmodel.MainActivityViewModel
 import com.example.yourcarsevice.viewmodel.PartItemFragmentViewModel
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -23,16 +22,16 @@ class MainActivity : AppCompatActivity(){
         setSupportActionBar(findViewById(R.id.toolbar))
     }
 
-    override fun onResume() {
-        super.onResume()
-       /* mainActivityViewModel.theme.observe(this, Observer {
+    override fun onStart() {
+        super.onStart()
+        partItemFragmentViewModel.theme.observe(this, Observer {
             when(it){
                 this.getString(R.string.light_theme_values) -> AppCompatDelegate.setDefaultNightMode(
                     AppCompatDelegate.MODE_NIGHT_NO)
                 this.getString(R.string.dark_theme_values) -> AppCompatDelegate.setDefaultNightMode(
                     AppCompatDelegate.MODE_NIGHT_YES)
             }
-        })*/
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

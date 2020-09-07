@@ -8,7 +8,7 @@
 
         <variable
             name="clickHandlers"
-            type="com.example.yourcarsevice.view.PartItemFragment" />
+            type="com.example.yourcarsevice.view.PartItemFragment.PartItemFragmentClickHandlers" />
 
     </data>
 
@@ -38,19 +38,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-
+            android:layout_margin="30dp"
+            android:onClick="@{clickHandlers::onFabClicked}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_dialog_email" />
-        <!--android:onClick="@{clickHandlers::onFabClicked}"-->
-        <!--<Button
-            android:id="@+id/button_synchronization"
-            android:layout_width="match_parent"
-            android:text="synchronization"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="10dp" />-->
+            app:srcCompat="@drawable/ic_baseline_add_circle" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

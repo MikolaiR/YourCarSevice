@@ -7,7 +7,7 @@
         android:icon="@drawable/ic_baseline_cloud_upload_24"
         android:orderInCategory="2"
         android:title="@string/synchronization_parts"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         />
     <item
         android:id="@+id/exit_to_app"

@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.example.retrofitmvvm.service.RetrofitInstance
+import com.example.yourcarsevice.service.RetrofitInstance
 import com.example.yourcarsevice.view.BEARER_TOKEN
 import com.example.yourcarsevice.view.PREFS_NAME
 import com.example.yourcarsevice.model.retrofit.party.PartApiRequest
@@ -87,6 +87,7 @@ class PartRepository(application: Application) {
                     )
                 )
             }
+            Log.i("synchronization", "deleteList: $deleteList")
             if (part.isUpdate) {
                 updateList.add(
                     PartApiRequest(
@@ -99,6 +100,7 @@ class PartRepository(application: Application) {
                     )
                 )
             }
+            Log.i("synchronization", "updateList: $updateList")
             if (!part.isSync){
                 syncList.add( PartApiRequest(
                     part.backendId,
@@ -110,6 +112,7 @@ class PartRepository(application: Application) {
                 ))
                 part.isSync = true
             }
+            Log.i("synchronization", "syncList: $syncList")
         }
         requestMap["delete"] = deleteList
         requestMap["update"] = updateList

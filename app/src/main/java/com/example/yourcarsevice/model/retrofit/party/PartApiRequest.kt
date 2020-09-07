@@ -6,10 +6,10 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class PartApiRequest (
-    @Json(name = "part_id") val id: String?,
-    @Json(name = "part_name") val partName: String?,
-    @Json(name = "part_update_date") val partUpdateDate: String?,
-    @Json(name = "car_millage") val carMillage: String?,
-    @Json(name = "part_comment") val comment: String?,
-    @Json(name = "part_price") val price: String?
+    @Json(name = "_id") val id: String?,
+    @Json(name = "name") val partName: String?,
+    @Json(name = "updateDate") val partUpdateDate: String?,
+    @Json(name = "carMillage") val carMillage: String?,
+    @Json(name = "comment") val comment: String?,
+    @Json(name = "price") val price: String?
 )

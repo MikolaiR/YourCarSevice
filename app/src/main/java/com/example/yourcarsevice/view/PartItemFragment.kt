@@ -1,7 +1,6 @@
 package com.example.yourcarsevice.view
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
@@ -10,17 +9,17 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.yourcarsevice.*
 import com.example.yourcarsevice.adpter.MyItemRecyclerViewAdapter
-import com.example.yourcarsevice.model.retrofit.party.PartApiRequest
+import com.example.yourcarsevice.databinding.FragmentItemPartyBinding
 import com.example.yourcarsevice.model.room.Part
 import com.example.yourcarsevice.viewmodel.PartItemFragmentViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -37,18 +36,15 @@ class PartItemFragment : Fragment() {
     private var selectedPartId: Int = 0
 
     private val partViewModel by viewModels<PartItemFragmentViewModel>()
-    private val sharedPrefs by lazy {
-        context?.getSharedPreferences(
-            PREFS_NAME,
-            Context.MODE_PRIVATE
-        )
-    }
+    private lateinit var fragmentItemPartyBinding: FragmentItemPartyBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_item_party, container, false)
+        fragmentItemPartyBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_item_party,container,false)
+        fragmentItemPartyBinding.clickHandlers = PartItemFragmentClickHandlers()
+        return fragmentItemPartyBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,7 +57,7 @@ class PartItemFragment : Fragment() {
                 ADD_PART_REQUEST_CODE
             )
         }
-        recyclerView = view.findViewById(R.id.recycler_view)
+        recyclerView = fragmentItemPartyBinding.recyclerView
 
         fillRecyclerView()
         loadGenrePartsInList()
@@ -103,7 +99,6 @@ class PartItemFragment : Fragment() {
             ): Boolean {
                 return false
             }
-
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val partToDelete = partsList[viewHolder.adapterPosition]
                 partViewModel.deletePart(partToDelete)
@@ -111,8 +106,8 @@ class PartItemFragment : Fragment() {
         }).attachToRecyclerView(recyclerView)
     }
 
-    //todo fab onclick
     inner class PartItemFragmentClickHandlers {
+
         fun onFabClicked(view: View) {
             Toast.makeText(context, "onFabClick", Toast.LENGTH_SHORT).show()
             Log.i("onFabClick", "onFabClicked: onFabClick")
@@ -135,10 +130,6 @@ class PartItemFragment : Fragment() {
             partsList = currentList
             fillRecyclerView()
         })
-    }
-
-    private fun synchronization() {
-
     }
 
     //todo result
@@ -164,5 +155,4 @@ class PartItemFragment : Fragment() {
             partViewModel.updatePart(part)
         }
     }
-
 }

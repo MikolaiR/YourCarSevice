@@ -7,19 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.yourcarsevice.R
+import com.example.yourcarsevice.databinding.FragmentAuthLoginBinding
 import com.example.yourcarsevice.model.retrofit.user.User
 import com.google.android.material.textfield.TextInputLayout
 import com.example.yourcarsevice.viewmodel.UserViewModel
+const val IMAGE_URL = "https://st.depositphotos.com/1001911/1438/v/450/depositphotos_14382675-stock-illustration-v-sign-emoticon.jpg"
 
 class LoginAuthFragment : Fragment() {
 
     private val userViewModel by viewModels<UserViewModel>()
+    private lateinit var fragmentAuthLoginBinding: FragmentAuthLoginBinding
 
-    private lateinit var textLoginInputEmail: TextInputLayout
-    private lateinit var textLoginInputPassword: TextInputLayout
+
     private val sharedPrefs by lazy {
         context?.getSharedPreferences(
             PREFS_NAME,
@@ -31,8 +36,10 @@ class LoginAuthFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_auth_login, container, false)
+        fragmentAuthLoginBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_auth_login,container,false)
+        fragmentAuthLoginBinding.clickHandler = LoginAuthFragmentHandlers()
+        Glide.with(requireContext()).load(IMAGE_URL).into(fragmentAuthLoginBinding.imageViewTitle)
+        return fragmentAuthLoginBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,20 +47,20 @@ class LoginAuthFragment : Fragment() {
          if (sharedPrefs?.getString(BEARER_TOKEN, "error") != "error") {
             findNavController().navigate(R.id.action_loginFragment_to_partFragment)
         }
-        textLoginInputEmail = view.findViewById(R.id.textLoginInputEmail)
-        textLoginInputPassword = view.findViewById(R.id.textLoginInputPassword)
+    }
 
-        view.findViewById<Button>(R.id.button_log_in).setOnClickListener {
+    inner class LoginAuthFragmentHandlers{
+        fun onClickLogin(view: View){
             userViewModel.getTokenUser(
                 User(
-                    null, textLoginInputEmail.editText?.text.toString(),
-                    textLoginInputPassword.editText?.text.toString()
+                    null, fragmentAuthLoginBinding.textLoginInputEmail.editText?.text.toString(),
+                    fragmentAuthLoginBinding.textLoginInputPassword.editText?.text.toString()
                 )
             )
             findNavController().navigate(R.id.action_loginFragment_to_partFragment)
         }
 
-        view.findViewById<Button>(R.id.button_registration).setOnClickListener {
+        fun onClickRegistration(view: View){
             findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
         }
     }

@@ -26,9 +26,6 @@ class MyItemRecyclerViewAdapter() : RecyclerView.Adapter<MyItemRecyclerViewAdapt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val part = partsList[position]
-        if(!part.isDelete){
-
-        }
         holder.fragmentItemBinding.part = part
     }
 

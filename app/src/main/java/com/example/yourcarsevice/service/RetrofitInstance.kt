@@ -1,7 +1,6 @@
-package com.example.retrofitmvvm.service
+package com.example.yourcarsevice.service
 
 import android.util.Log
-import com.example.yourcarsevice.service.ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 

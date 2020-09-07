@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
-            android:hint="Name"
+            android:hint="@string/name"
             android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -42,20 +42,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputConfirmPassword"
         app:errorEnabled="true"
         app:passwordToggleEnabled="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
-            android:hint="Confirm password"
+            android:hint="@string/confirm_password"
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -65,7 +64,7 @@
         android:id="@+id/button_registration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registration"
+        android:text="@string/registration"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_marginTop="16dp"
