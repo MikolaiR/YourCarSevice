@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -24,17 +23,17 @@ import com.example.yourcarsevice.model.retrofit.party.PartApiResponse
 import com.example.yourcarsevice.model.room.Part
 import com.example.yourcarsevice.viewmodel.PartItemFragmentViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.util.*
 
 const val ADD_PART_REQUEST_CODE = 111
 const val EDIT_PART_REQUEST_CODE = 222
 
 class PartItemFragment : Fragment() {
 
-    private lateinit var buttonSynchronization: Button
     private lateinit var recyclerView: RecyclerView
     private lateinit var partAdapter: MyItemRecyclerViewAdapter
     private var partsList: List<Part> = listOf()
-    private var selectedPartId: Int? = 0
+    private var selectedPartId: Int = 0
 
     private val partViewModel by viewModels<PartItemFragmentViewModel>()
     private val sharedPrefs by lazy {
@@ -79,7 +78,7 @@ class PartItemFragment : Fragment() {
         partAdapter.setOnItemClickListener(object : MyItemRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(part: Part) {
                 val intent = Intent(context, AddEditActivity::class.java)
-                selectedPartId = part.partId
+                selectedPartId = part.partId!!
                 intent.putExtra(PART_ID, selectedPartId)
                 intent.putExtra(PART_NAME, part.partName)
                 intent.putExtra(PART_UPDATE, part.partUpdateDate)
@@ -125,23 +124,26 @@ class PartItemFragment : Fragment() {
     //todo result
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.i("addParttoRoom", "onActivityResult: ok")
+        Log.i("addPartResponse", "onActivityResult: ok")
         if (requestCode == ADD_PART_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             val part = Part()
+            part.backendId = UUID.randomUUID().toString()
             part.partName = data?.getStringExtra(PART_NAME)
             part.partUpdateDate = data?.getStringExtra(PART_UPDATE)
             part.carMillage = data?.getStringExtra(CAR_MILLAGE)
             part.price = data?.getStringExtra(PART_PRICE)
             partViewModel.addNewPart(part)
+            Log.i("addPartResponse", "onActivityResult: ${part.backendId}")
             val partApiResponse = PartApiResponse(
-                selectedPartId,
-                data?.getStringExtra(PART_NAME),
-                data?.getStringExtra(PART_UPDATE),
-                data?.getStringExtra(CAR_MILLAGE),
+                part.backendId,
+                part.partName,
+                part.partUpdateDate,
+                part.carMillage,
                 "fff",
-                data?.getStringExtra(PART_PRICE)
+                part.price
             )
-            partViewModel.updateListResponse(partApiResponse)
+          partViewModel.updateListResponse(partApiResponse)
+
         } else if (requestCode == EDIT_PART_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             val part = Part()
             part.partId = selectedPartId

@@ -4,11 +4,12 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.example.yourcarsevice.BR
 
 @Entity(tableName = "parts_table")
-class Part : BaseObservable() {
+class Part  : BaseObservable() {
     @PrimaryKey(autoGenerate = true)
     var partId: Int? = null
         @Bindable
@@ -16,6 +17,14 @@ class Part : BaseObservable() {
         set(value) {
             field = value
             notifyPropertyChanged(BR.partId)
+        }
+    @ColumnInfo(name = "backend_id")
+    var backendId : String? = null
+        @Bindable
+        get
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.backendId)
         }
     @ColumnInfo(name = "part_name")
     var partName: String? = null
