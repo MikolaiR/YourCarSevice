@@ -7,11 +7,10 @@ import com.example.yourcarsevice.model.PartRepository
 import com.example.yourcarsevice.model.retrofit.party.PartApiResponse
 import com.example.yourcarsevice.model.room.Part
 
-class PartItemFragmentViewModel(application: Application):AndroidViewModel(application) {
-
+class PartItemFragmentViewModel(application: Application): AndroidViewModel(application) {
     private val partRepository = PartRepository(application)
 
-    fun getParts(): LiveData<List<Part>>{
+    fun getParts(): LiveData<List<Part>> {
         return partRepository.getParts()
     }
 
@@ -27,9 +26,6 @@ class PartItemFragmentViewModel(application: Application):AndroidViewModel(appli
     }
 
     fun updateListResponse(partApiResponse: PartApiResponse){
-        partRepository.updateList(partApiResponse)
+        partRepository.updateListResponse(partApiResponse)
     }
-
-
-
 }

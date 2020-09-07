@@ -1,68 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    card_view:cardCornerRadius="10dp"
-    card_view:cardElevation="4dp"
-    card_view:cardUseCompatPadding="true">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="part"
+            type="com.example.yourcarsevice.model.room.Part" />
+
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp">
-
-        <TextView
-            android:id="@+id/textView_part_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:layout_marginTop="16dp"
-            android:gravity="center_horizontal"
-            android:text="part_name"
-            android:textAppearance="?attr/textAppearanceListItem" />
+        card_view:cardCornerRadius="10dp"
+        card_view:cardElevation="4dp"
+        card_view:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="6dp">
+            android:orientation="vertical"
+            android:padding="8dp">
 
             <TextView
-                android:id="@+id/textView_part_update_date"
+                android:id="@+id/textView_part_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
-                android:layout_weight="1"
-                android:text="update_date"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:text="@{part.partName}"
                 android:textAppearance="?attr/textAppearanceListItem" />
 
-            <TextView
-                android:id="@+id/textView_car_millage"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <TextView
+                    android:id="@+id/textView_part_update_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:layout_weight="1"
+                    android:text="@{part.partUpdateDate}"
+                    android:textAppearance="?attr/textAppearanceListItem" />
+
+                <TextView
+                    android:id="@+id/textView_car_millage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="@{part.carMillage}"
+                    android:textAppearance="?attr/textAppearanceListItem" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="millage"
-                android:textAppearance="?attr/textAppearanceListItem" />
+                android:text="@{part.price}"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="price"
-            android:textSize="20sp"
-            android:textStyle="bold" />
 
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 
-</androidx.cardview.widget.CardView>
+
+</layout>
+

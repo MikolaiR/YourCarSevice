@@ -23,4 +23,13 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="name_party">Name Party</string>
+    <string name="part_update">Date Update</string>
+    <string name="car_millage">Car Millage</string>
+    <string name="price">Price</string>
+    <string name="ok">OK</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="synchronization_parts">Synchronization parts</string>
+    <string name="exit">Exit</string>
 </resources>

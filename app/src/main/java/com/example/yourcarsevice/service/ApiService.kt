@@ -11,7 +11,6 @@ import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface ApiService {
-
     @POST("users")
     fun registrationUser(@Body user: User):Call<ResponseBody>
 

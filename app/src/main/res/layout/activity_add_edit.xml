@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="clickHandlers"
+            type="com.example.yourcarsevice.AddEditActivity.AddEditActivityClickHandlers" />
+
+        <variable
+            name="part"
+            type="com.example.yourcarsevice.model.room.Part" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".AddEditActivity">
+
+        <TextView
+            android:id="@+id/movieNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/name_party"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/partNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:text="@={part.partName}"
+            android:hint="@string/name_party"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/partUpdateDateTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/part_update"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/partUpdateDateEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:text="@={part.partUpdateDate}"
+            android:hint="@string/part_update"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/carMillageTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/car_millage"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/carMillageEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:text="@={part.carMillage}"
+            android:hint="@string/car_millage"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/priceTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/price"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/priceEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:text="@={part.price}"
+            android:hint="@string/price"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/okButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:gravity="center"
+            android:onClick="@{clickHandlers::onOkButtonClicked}"
+            android:text="@string/ok"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+</layout>

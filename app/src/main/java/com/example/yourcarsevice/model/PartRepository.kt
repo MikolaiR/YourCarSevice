@@ -60,20 +60,21 @@ class PartRepository(application: Application) {
         }
     }
 
-    fun updateList(part: PartApiResponse) {
+    fun updateListResponse(part: PartApiResponse) {
+        Log.i("addPartResponse", "updateList: ok ")
         val partService = RetrofitInstance().getService()
         val call = partService.synchronizationPart(
             part, "Bearer ${sharedPrefs?.getString(
                 BEARER_TOKEN, "error"
-            )!!}"
+            )}"
         )
         call.enqueue(object : Callback<ResponseBody> {
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-
+                Log.i("addPartResponse", "onFailure: ${t.message} ")
             }
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-
+                Log.i("addPartResponse", "onResponse: ${response.errorBody()?.string()} --- ${response.code()} ")
             }
         })
     }
