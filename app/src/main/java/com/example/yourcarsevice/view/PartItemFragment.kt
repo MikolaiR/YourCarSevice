@@ -1,4 +1,4 @@
-package com.example.yourcarsevice.fragment
+package com.example.yourcarsevice.view
 
 import android.app.Activity
 import android.content.Context
@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -19,7 +20,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.yourcarsevice.*
 import com.example.yourcarsevice.adpter.MyItemRecyclerViewAdapter
-import com.example.yourcarsevice.model.retrofit.party.PartApiResponse
+import com.example.yourcarsevice.model.retrofit.party.PartApiRequest
 import com.example.yourcarsevice.model.room.Part
 import com.example.yourcarsevice.viewmodel.PartItemFragmentViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -55,7 +56,10 @@ class PartItemFragment : Fragment() {
 
         view.findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
             val intent = Intent(context, AddEditActivity::class.java)
-            startActivityForResult(intent, ADD_PART_REQUEST_CODE)
+            startActivityForResult(
+                intent,
+                ADD_PART_REQUEST_CODE
+            )
         }
         recyclerView = view.findViewById(R.id.recycler_view)
 
@@ -84,7 +88,10 @@ class PartItemFragment : Fragment() {
                 intent.putExtra(PART_UPDATE, part.partUpdateDate)
                 intent.putExtra(CAR_MILLAGE, part.carMillage)
                 intent.putExtra(PART_PRICE, part.price)
-                startActivityForResult(intent, EDIT_PART_REQUEST_CODE)
+                startActivityForResult(
+                    intent,
+                    EDIT_PART_REQUEST_CODE
+                )
             }
         })
 
@@ -110,15 +117,28 @@ class PartItemFragment : Fragment() {
             Toast.makeText(context, "onFabClick", Toast.LENGTH_SHORT).show()
             Log.i("onFabClick", "onFabClicked: onFabClick")
             val intent = Intent(context, AddEditActivity::class.java)
-            startActivityForResult(intent, ADD_PART_REQUEST_CODE)
+            startActivityForResult(
+                intent,
+                ADD_PART_REQUEST_CODE
+            )
         }
     }
 
     private fun loadGenrePartsInList() {
         partViewModel.getParts().observe(viewLifecycleOwner, Observer {
-            partsList = it
+            val currentList = mutableListOf<Part>()
+            for (part in it) {
+                if (!part.isDelete) {
+                    currentList.add(part)
+                }
+            }
+            partsList = currentList
             fillRecyclerView()
         })
+    }
+
+    private fun synchronization() {
+
     }
 
     //todo result
@@ -133,17 +153,6 @@ class PartItemFragment : Fragment() {
             part.carMillage = data?.getStringExtra(CAR_MILLAGE)
             part.price = data?.getStringExtra(PART_PRICE)
             partViewModel.addNewPart(part)
-            Log.i("addPartResponse", "onActivityResult: ${part.backendId}")
-            val partApiResponse = PartApiResponse(
-                part.backendId,
-                part.partName,
-                part.partUpdateDate,
-                part.carMillage,
-                "fff",
-                part.price
-            )
-          partViewModel.updateListResponse(partApiResponse)
-
         } else if (requestCode == EDIT_PART_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             val part = Part()
             part.partId = selectedPartId
@@ -151,7 +160,9 @@ class PartItemFragment : Fragment() {
             part.partUpdateDate = data?.getStringExtra(PART_UPDATE)
             part.carMillage = data?.getStringExtra(CAR_MILLAGE)
             part.price = data?.getStringExtra(PART_PRICE)
+            part.isUpdate = true
             partViewModel.updatePart(part)
         }
     }
+
 }

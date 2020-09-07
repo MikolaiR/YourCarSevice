@@ -5,9 +5,9 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.retrofitmvvm.service.RetrofitInstance
-import com.example.yourcarsevice.fragment.BEARER_TOKEN
-import com.example.yourcarsevice.fragment.PREFS_NAME
-import com.example.yourcarsevice.model.retrofit.party.PartApiResponse
+import com.example.yourcarsevice.view.BEARER_TOKEN
+import com.example.yourcarsevice.view.PREFS_NAME
+import com.example.yourcarsevice.model.retrofit.party.PartApiRequest
 import com.example.yourcarsevice.model.room.Part
 import com.example.yourcarsevice.model.room.PartDao
 import com.example.yourcarsevice.model.room.PartDataBase
@@ -54,17 +54,11 @@ class PartRepository(application: Application) {
         }
     }
 
-    fun deletePart(part: Part) {
-        GlobalScope.launch(Dispatchers.IO) {
-            partDao.deletePart(part)
-        }
-    }
-
-    fun updateListResponse(part: PartApiResponse) {
+    private fun updateListResponse(partsMap: Map<String,List<PartApiRequest>>) {
         Log.i("addPartResponse", "updateList: ok ")
         val partService = RetrofitInstance().getService()
         val call = partService.synchronizationPart(
-            part, "Bearer ${sharedPrefs?.getString(
+            partsMap, "Bearer ${sharedPrefs?.getString(
                 BEARER_TOKEN, "error"
             )}"
         )
@@ -77,6 +71,51 @@ class PartRepository(application: Application) {
                 Log.i("addPartResponse", "onResponse: ${response.errorBody()?.string()} --- ${response.code()} ")
             }
         })
+    }
+
+    fun synchronization(partList:List<Part>){
+        val requestMap = mutableMapOf<String, List<PartApiRequest>>()
+        val deleteList = mutableListOf<PartApiRequest>()
+        val updateList = mutableListOf<PartApiRequest>()
+        val syncList = mutableListOf<PartApiRequest>()
+        for (part in partList) {
+            if (part.isDelete) {
+                deleteList.add(
+                    PartApiRequest(
+                        part.backendId,
+                        null, null, null, null, null
+                    )
+                )
+            }
+            if (part.isUpdate) {
+                updateList.add(
+                    PartApiRequest(
+                        part.backendId,
+                        part.partName,
+                        part.partUpdateDate,
+                        part.carMillage,
+                        part.comment,
+                        part.price
+                    )
+                )
+            }
+            if (!part.isSync){
+                syncList.add( PartApiRequest(
+                    part.backendId,
+                    part.partName,
+                    part.partUpdateDate,
+                    part.carMillage,
+                    part.comment,
+                    part.price
+                ))
+                part.isSync = true
+            }
+        }
+        requestMap["delete"] = deleteList
+        requestMap["update"] = updateList
+        requestMap["sync"] = syncList
+        Log.i("synchronization", "synchronization: ${requestMap["delete"]}")
+        updateListResponse(requestMap)
     }
 }
 

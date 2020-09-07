@@ -1,12 +1,11 @@
 package com.example.yourcarsevice.model.retrofit.party
 
-import androidx.room.ColumnInfo
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 
 @JsonClass(generateAdapter = true)
-data class PartApiResponse (
+data class PartApiRequest (
     @Json(name = "part_id") val id: String?,
     @Json(name = "part_name") val partName: String?,
     @Json(name = "part_update_date") val partUpdateDate: String?,

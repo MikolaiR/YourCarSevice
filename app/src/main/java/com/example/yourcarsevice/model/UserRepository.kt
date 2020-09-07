@@ -5,8 +5,8 @@ import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import com.example.retrofitmvvm.service.RetrofitInstance
-import com.example.yourcarsevice.fragment.BEARER_TOKEN
-import com.example.yourcarsevice.fragment.PREFS_NAME
+import com.example.yourcarsevice.view.BEARER_TOKEN
+import com.example.yourcarsevice.view.PREFS_NAME
 import com.example.yourcarsevice.model.retrofit.user.User
 import com.example.yourcarsevice.model.retrofit.user.UserTokenResponse
 import okhttp3.ResponseBody
@@ -18,7 +18,7 @@ class UserRepository(val application: Application) {
 
     private val sharedPrefs by lazy {
        application.getSharedPreferences(
-            PREFS_NAME,
+           PREFS_NAME,
             Context.MODE_PRIVATE
         )
     }

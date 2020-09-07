@@ -8,7 +8,7 @@
 
         <variable
             name="clickHandlers"
-            type="com.example.yourcarsevice.AddEditActivity.AddEditActivityClickHandlers" />
+            type="com.example.yourcarsevice.view.AddEditActivity.AddEditActivityClickHandlers" />
 
         <variable
             name="part"
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".AddEditActivity">
+        tools:context=".view.AddEditActivity">
 
         <TextView
             android:id="@+id/movieNameTextView"
@@ -51,6 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
+            android:inputType="date"
             android:text="@={part.partUpdateDate}"
             android:hint="@string/part_update"
             android:textSize="20sp" />
@@ -67,6 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
+            android:inputType="number"
             android:text="@={part.carMillage}"
             android:hint="@string/car_millage"
             android:textSize="20sp" />
@@ -83,6 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
+            android:inputType="number"
             android:text="@={part.price}"
             android:hint="@string/price"
             android:textSize="20sp" />

@@ -1,4 +1,4 @@
-package com.example.yourcarsevice.fragment
+package com.example.yourcarsevice.view
 
 import android.content.Context
 import android.os.Bundle
@@ -38,7 +38,7 @@ class LoginAuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
          if (sharedPrefs?.getString(BEARER_TOKEN, "error") != "error") {
-            findNavController().navigate(R.id.action_LoginFragment_to_PartFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_partFragment)
         }
         textLoginInputEmail = view.findViewById(R.id.textLoginInputEmail)
         textLoginInputPassword = view.findViewById(R.id.textLoginInputPassword)
@@ -50,13 +50,14 @@ class LoginAuthFragment : Fragment() {
                     textLoginInputPassword.editText?.text.toString()
                 )
             )
-            findNavController().navigate(R.id.action_LoginFragment_to_PartFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_partFragment)
         }
 
         view.findViewById<Button>(R.id.button_registration).setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
         }
     }
+
 }
 
 

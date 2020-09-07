@@ -1,4 +1,4 @@
-package com.example.yourcarsevice
+package com.example.yourcarsevice.view
 
 import android.app.Activity
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.example.yourcarsevice.R
 import com.example.yourcarsevice.databinding.ActivityAddEditBinding
 import com.example.yourcarsevice.model.room.Part
 
@@ -26,7 +27,9 @@ class AddEditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_edit)
         activityAddEditBinding =
-            DataBindingUtil.setContentView(this@AddEditActivity, R.layout.activity_add_edit)
+            DataBindingUtil.setContentView(this@AddEditActivity,
+                R.layout.activity_add_edit
+            )
         activityAddEditBinding.part = part
         activityAddEditBinding.clickHandlers = addEditActivityClickHandlers
 
@@ -41,7 +44,6 @@ class AddEditActivity : AppCompatActivity() {
     }
 
     inner class AddEditActivityClickHandlers {
-
         fun onOkButtonClicked(view: View) {
             if (part.partName == null) {
                 Toast.makeText(

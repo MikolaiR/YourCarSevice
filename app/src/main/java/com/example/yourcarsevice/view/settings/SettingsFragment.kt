@@ -1,8 +1,9 @@
-package com.example.yourcarsevice.fragment
+package com.example.yourcarsevice.view.settings
 
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat
 import com.example.yourcarsevice.R
+
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
