@@ -9,10 +9,3 @@ data class User(
     @Json(name = "email") val email: String,
     @Json(name = "password") val password: String
 )
-
-/*
-data class User(
-    val name: String,
-    val email: String,
-    val password: String
-)*/

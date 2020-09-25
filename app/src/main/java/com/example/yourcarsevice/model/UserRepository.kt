@@ -4,6 +4,9 @@ import android.app.Application
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
+import com.example.yourcarsevice.R
 import com.example.yourcarsevice.service.RetrofitInstance
 import com.example.yourcarsevice.view.BEARER_TOKEN
 import com.example.yourcarsevice.view.PREFS_NAME
@@ -17,41 +20,42 @@ import retrofit2.Response
 class UserRepository(val application: Application) {
 
     private val sharedPrefs by lazy {
-       application.getSharedPreferences(
-           PREFS_NAME,
+        application.getSharedPreferences(
+            PREFS_NAME,
             Context.MODE_PRIVATE
         )
     }
 
-     fun loginUser(user: User) {
+    fun loginUser(user: User, fragment: Fragment, registration:Boolean) {
         val loginService = RetrofitInstance().getService()
         val call = loginService.loginUser(user)
         call.enqueue(object : Callback<UserTokenResponse> {
             override fun onFailure(call: Call<UserTokenResponse>, t: Throwable) {
-                Log.i("loginUser", "onFailure: ${t.message} -- ${t.localizedMessage} ")
                 Toast.makeText(application, " ${t.message}", Toast.LENGTH_LONG).show()
             }
             override fun onResponse(call: Call<UserTokenResponse>, response: Response<UserTokenResponse>) {
-                Log.i("loginUser", "onResponse: ${response.message()}")
                 if (response.isSuccessful) {
                     val userResponse = response.body()
                     if (userResponse != null) {
                         userResponse.bearer
                         sharedPrefs?.edit()?.putString(BEARER_TOKEN, userResponse.bearer)?.apply()
-                        Log.i(
-                            "loginUser",
-                            "onResponse: ${sharedPrefs?.getString(BEARER_TOKEN, "ERROR")} ")
+                        // todo get token and fragment to part
+                        if (registration){
+                            NavHostFragment.findNavController(fragment).navigate(R.id.action_registrationFragment_to_partFragment)
+                        }else{
+                            NavHostFragment.findNavController(fragment).navigate(R.id.action_loginFragment_to_partFragment)
+                        }
+
                     }
                 } else {
                     val str = separatorForErrorMessenger(response.errorBody()?.string()!!)
-                    Log.i("loginUser", "onResponse: $str ")
                     Toast.makeText(application, str, Toast.LENGTH_SHORT).show()
                 }
             }
         })
     }
 
-     fun registrationUser(user: User):Boolean {
+    fun registrationUser(user: User):Boolean {
         var isSuccessful = false
         val loginService = RetrofitInstance().getService()
         val call = loginService.registrationUser(user)
@@ -74,9 +78,6 @@ class UserRepository(val application: Application) {
         })
         return isSuccessful
     }
-
-
-
 }
 
 fun separatorForErrorMessenger(errorMessage: String): String {

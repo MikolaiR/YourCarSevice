@@ -1,64 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<data>
 
-    <variable
-        name="clickHandler"
-        type="com.example.yourcarsevice.view.LoginAuthFragment.LoginAuthFragmentHandlers" />
-</data>
+    <data>
+
+        <variable
+            name="clickHandler"
+            type="com.example.yourcarsevice.view.LoginAuthFragment.LoginAuthFragmentHandlers" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         android:orientation="vertical"
         android:padding="16dp"
         tools:context=".view.LoginAuthFragment">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginTop="@android:dimen/notification_large_icon_height"
-            android:id="@+id/textLoginInputEmail"
-            app:errorEnabled="true"
+        <ImageView
+            android:id="@+id/imageView_title"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="Welcome"
+            android:textSize="32sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textLoginInputEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:boxBackgroundMode="outline"
+            app:errorEnabled="true">
+
             <com.google.android.material.textfield.TextInputEditText
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textLoginInputPassword"
-            app:errorEnabled="true"
-            app:passwordToggleEnabled="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:errorEnabled="true"
+            app:passwordToggleEnabled="true">
+
             <com.google.android.material.textfield.TextInputEditText
-                android:hint="@string/password"
-                android:inputType="textPassword"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/button_log_in"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/log_in"
-            android:onClick="@{clickHandler::onClickLogin}"
-            android:gravity="center"
-            android:layout_margin="16dp"
             android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:background="@drawable/button_style"
+            android:gravity="center"
+            android:onClick="@{clickHandler::onClickLogin}"
+            android:text="@string/log_in"
             app:layout_constraintBottom_toTopOf="@id/button_registration"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_horizontal"
+            android:onClick="@{clickHandler::onClickRegistration}"
+            android:text="Register" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:text="all right reserved EM-teem"
+            android:textSize="20sp" />
+
+
+        <!--<Button
             android:id="@+id/button_registration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,17 +110,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_log_in" />
-
-        <ImageView
-            android:id="@+id/imageView_title"
-            android:layout_marginTop="4dp"
-            android:layout_width="200dp"
-            android:layout_gravity="center"
-            android:layout_height="200dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:layout_constraintTop_toBottomOf="@id/button_log_in" />-->
     </LinearLayout>
-
 
 
 </layout>

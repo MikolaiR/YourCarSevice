@@ -12,6 +12,7 @@ import com.example.yourcarsevice.databinding.ActivityAddEditBinding
 import com.example.yourcarsevice.model.room.Part
 
 const val PART_ID = "partId"
+const val PART_BACKEND_ID = "partId"
 const val PART_NAME = "partName"
 const val PART_UPDATE = "partUpdateDate"
 const val CAR_MILLAGE = "carMillage"
@@ -35,7 +36,7 @@ class AddEditActivity : AppCompatActivity() {
 
         val intent = intent
         if (intent.hasExtra(PART_ID)) {
-            title = "Edit movie"
+            title = "Edit part"
             part.partName = intent.getStringExtra(PART_NAME)
             part.partUpdateDate = intent.getStringExtra(PART_UPDATE)
             part.carMillage = intent.getStringExtra(CAR_MILLAGE)

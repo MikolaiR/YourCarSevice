@@ -18,15 +18,12 @@ interface PartDao {
     @Query("select * from parts_table")
     fun getAllPart(): LiveData<List<Part>>
 
-    /*@Query("select * from cars where car_id ==:carId ")
-    fun getCar(carId: Long): Car
+    @Query("DELETE FROM parts_table")
+    fun deleteAll()
 
-    @Query("SELECT * FROM cars ORDER BY LOWER(car_model)")
-    fun getAllCarsSortModel(): List<Car>
+    @Query("select * from parts_table where backend_id ==:backendId")
+    fun getPartBackendId(backendId:String):Part
 
-    @Query("SELECT * FROM cars ORDER BY car_year ")
-    fun getAllCarsSortYear(): List<Car>
-
-    @Query("SELECT * FROM cars ORDER BY LOWER(car_color)")
-    fun getAllCarsSortColor(): List<Car>*/
+    @Query("select * from parts_table where _id ==:id")
+    fun getPartId(id:String):Part
 }

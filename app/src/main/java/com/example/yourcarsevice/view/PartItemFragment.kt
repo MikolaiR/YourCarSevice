@@ -78,7 +78,7 @@ class PartItemFragment : Fragment() {
         partAdapter.setOnItemClickListener(object : MyItemRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(part: Part) {
                 val intent = Intent(context, AddEditActivity::class.java)
-                selectedPartId = part.partId!!
+                selectedPartId = part._id!!
                 intent.putExtra(PART_ID, selectedPartId)
                 intent.putExtra(PART_NAME, part.partName)
                 intent.putExtra(PART_UPDATE, part.partUpdateDate)
@@ -146,7 +146,7 @@ class PartItemFragment : Fragment() {
             partViewModel.addNewPart(part)
         } else if (requestCode == EDIT_PART_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             val part = Part()
-            part.partId = selectedPartId
+            part._id = selectedPartId
             part.partName = data?.getStringExtra(PART_NAME)
             part.partUpdateDate = data?.getStringExtra(PART_UPDATE)
             part.carMillage = data?.getStringExtra(CAR_MILLAGE)

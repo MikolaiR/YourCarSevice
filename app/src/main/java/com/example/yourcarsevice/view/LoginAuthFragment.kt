@@ -17,7 +17,9 @@ import com.example.yourcarsevice.databinding.FragmentAuthLoginBinding
 import com.example.yourcarsevice.model.retrofit.user.User
 import com.google.android.material.textfield.TextInputLayout
 import com.example.yourcarsevice.viewmodel.UserViewModel
-const val IMAGE_URL = "https://st.depositphotos.com/1001911/1438/v/450/depositphotos_14382675-stock-illustration-v-sign-emoticon.jpg"
+import kotlinx.android.synthetic.main.content_main.*
+
+const val IMAGE_URL = "https://i112.fastpic.ru/big/2020/0917/24/62eea0c37ea28dd0ca578de7f36ed624.png"
 
 class LoginAuthFragment : Fragment() {
 
@@ -36,6 +38,7 @@ class LoginAuthFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         fragmentAuthLoginBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_auth_login,container,false)
         fragmentAuthLoginBinding.clickHandler = LoginAuthFragmentHandlers()
         Glide.with(requireContext()).load(IMAGE_URL).into(fragmentAuthLoginBinding.imageViewTitle)
@@ -44,7 +47,7 @@ class LoginAuthFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-         if (sharedPrefs?.getString(BEARER_TOKEN, "error") != "error") {
+        if (sharedPrefs?.getString(BEARER_TOKEN, "error") != "error") {
             findNavController().navigate(R.id.action_loginFragment_to_partFragment)
         }
     }
@@ -55,16 +58,14 @@ class LoginAuthFragment : Fragment() {
                 User(
                     null, fragmentAuthLoginBinding.textLoginInputEmail.editText?.text.toString(),
                     fragmentAuthLoginBinding.textLoginInputPassword.editText?.text.toString()
-                )
+                ),nav_host_fragment,false
             )
-            findNavController().navigate(R.id.action_loginFragment_to_partFragment)
         }
 
         fun onClickRegistration(view: View){
             findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
         }
     }
-
 }
 
 

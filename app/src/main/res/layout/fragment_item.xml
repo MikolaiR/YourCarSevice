@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -28,6 +27,13 @@
             android:padding="8dp">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/work_performed"
+                android:textAllCaps="true"
+                android:textSize="16sp" />
+
+            <TextView
                 android:id="@+id/textView_part_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,6 +50,13 @@
                 android:padding="6dp">
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Data:"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/textView_part_update_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -53,22 +66,36 @@
                     android:textAppearance="?attr/textAppearanceListItem" />
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Millage:"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/textView_car_millage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/text_margin"
                     android:layout_weight="1"
-                    android:gravity="end"
                     android:text="@{part.carMillage}"
                     android:textAppearance="?attr/textAppearanceListItem" />
 
             </LinearLayout>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="Price"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/textView_price"
                 android:layout_width="wrap_content"
-                android:layout_gravity="end"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
                 android:gravity="end"
                 android:text="@{part.price}"
                 android:textSize="20sp"
@@ -78,7 +105,6 @@
 
 
     </androidx.cardview.widget.CardView>
-
 
 
 </layout>

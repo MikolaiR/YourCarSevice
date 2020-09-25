@@ -6,7 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".view.RegistrationAuthFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="Welcome"
+        android:textSize="32sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputEmail"
@@ -62,13 +71,21 @@
 
     <Button
         android:id="@+id/button_registration"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/registration"
+        android:background="@drawable/button_style"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:text="all right reserved EM-teem"
+        android:textSize="20sp" />
 </LinearLayout>

@@ -36,5 +36,6 @@
     <string name="confirm_password">Confirm password</string>
     <string name="registration">Registration</string>
     <string name="email">Email</string>
+    <string name="work_performed">work performed:</string>
 
 </resources>

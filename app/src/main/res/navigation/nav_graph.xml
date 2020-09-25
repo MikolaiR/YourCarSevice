@@ -14,7 +14,9 @@
             app:destination="@id/registrationFragment" />
         <action
             android:id="@+id/action_loginFragment_to_partFragment"
-            app:destination="@id/partFragment" />
+            app:destination="@id/partFragment"
+            app:popUpTo="@id/partFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
@@ -26,7 +28,9 @@
             app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_registrationFragment_to_partFragment"
-            app:destination="@id/partFragment" />
+            app:destination="@id/partFragment"
+            app:popUpTo="@id/partFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
@@ -35,8 +39,10 @@
         android:label="List parts"
         tools:layout="@layout/fragment_item_party">
         <action
-            android:id="@+id/action_partFragment_to_loginFragment2"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_partFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_partFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />

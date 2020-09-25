@@ -8,9 +8,18 @@ import androidx.preference.PreferenceManager
 import com.example.yourcarsevice.R
 import com.example.yourcarsevice.model.PartRepository
 import com.example.yourcarsevice.model.room.Part
+import com.example.yourcarsevice.utils.SortList
 
 class PartItemFragmentViewModel(application: Application): AndroidViewModel(application) {
+
     private val partRepository = PartRepository(application)
+    private val sortList = SortList()
+
+
+    fun getPartBackendID(backendID:String):Part{
+        return partRepository.getPartBackendId(backendID)
+    }
+
 
     fun getParts(): LiveData<List<Part>> {
         return partRepository.getParts()
@@ -20,7 +29,7 @@ class PartItemFragmentViewModel(application: Application): AndroidViewModel(appl
         partRepository.insertPart(part)
     }
     fun deletePart(part: Part){
-        part.isDelete = true
+        partRepository.deletePart(part)
     }
 
     fun updatePart(part: Part){
@@ -29,12 +38,18 @@ class PartItemFragmentViewModel(application: Application): AndroidViewModel(appl
     }
 
     fun synchronization(parts: List<Part>){
-        partRepository.synchronization(parts)
+        partRepository.requestUpdatePart(sortList.listPartToMapPartApi(parts))
+
+
+    }
+
+    fun getPartListResponse(){
+        partRepository.responseListPart()
     }
 
     val theme:LiveData<String> = liveData{
         PreferenceManager.getDefaultSharedPreferences(application).getString(
-        application.getString(R.string.theme),
-        application.getString(R.string.light_theme_values)
-    )!! }
+            application.getString(R.string.theme),
+            application.getString(R.string.light_theme_values)
+        )!! }
 }
