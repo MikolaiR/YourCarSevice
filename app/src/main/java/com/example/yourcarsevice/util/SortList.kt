@@ -13,9 +13,7 @@ class SortList {
         val syncList = mutableListOf<PartApiRequest>()
         val listIsSync = mutableListOf<Part>()
         for (part in partList) {
-            Log.i("addPartResponse", "partList:${part.partName} delete ${part.isDelete}")
             if (part.isDelete) {
-                Log.i("addPartResponse", "partList:${part.partName} delete ${part.isDelete}")
                 removeList.add(
                     PartApiRequest(
                         part.backendId,
@@ -23,7 +21,6 @@ class SortList {
                     )
                 )
             }
-            Log.i("addPartResponse", "partList:${part.partName} isUpdate ${part.isUpdate}")
             if (part.isUpdate) {
                 updateList.add(
                     PartApiRequest(
@@ -36,10 +33,8 @@ class SortList {
                     )
                 )
             }
-            Log.i("synchronization", "updateList: $updateList")
             if (!part.isSync) {
                 listIsSync.add(part)
-                Log.i("addPartResponse", "partList: ${part.partName} sync ${part.isSync} ")
                 syncList.add(
                     PartApiRequest(
                         part.backendId,
@@ -51,8 +46,10 @@ class SortList {
                     )
                 )
             }
-            Log.i("synchronization", "syncList: $syncList")
         }
+        Log.d("listPartToMapPartApi", "remove: ${removeList.size} ")
+        Log.d("listPartToMapPartApi", "update: ${updateList.size} ")
+        Log.d("listPartToMapPartApi", "create: ${syncList.size} ")
         requestMap["remove"] = removeList
         requestMap["update"] = updateList
         requestMap["create"] = syncList

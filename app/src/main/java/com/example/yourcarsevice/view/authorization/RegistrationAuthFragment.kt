@@ -1,4 +1,4 @@
-package com.example.yourcarsevice.view
+package com.example.yourcarsevice.view.authorization
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -43,7 +43,7 @@ class RegistrationAuthFragment : Fragment() {
                     textInputName.editText?.text.toString(),
                     textInputEmail.editText?.text.toString(),
                     textInputPassword.editText?.text.toString()
-                ),nav_host_fragment,true
+                )
             )
         }
     }

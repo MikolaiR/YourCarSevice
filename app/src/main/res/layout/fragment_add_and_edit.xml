@@ -5,10 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="clickHandlers"
-            type="com.example.yourcarsevice.view.AddEditActivity.AddEditActivityClickHandlers" />
+            type="com.example.yourcarsevice.view.partfragment.AddAndEditFragment.AddAndEditFragmentClickHandlers" />
 
         <variable
             name="part"
@@ -19,10 +18,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".view.AddEditActivity">
+        tools:context=".view.partfragment.AddAndEditFragment">
 
         <TextView
-            android:id="@+id/movieNameTextView"
+            android:id="@+id/partNameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
@@ -102,5 +101,4 @@
             android:textSize="20sp" />
 
     </LinearLayout>
-
 </layout>

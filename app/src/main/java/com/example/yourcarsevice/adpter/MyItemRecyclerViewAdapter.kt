@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.yourcarsevice.R
-import com.example.yourcarsevice.databinding.FragmentItemBinding
+import com.example.yourcarsevice.databinding.FragmentItemRecyclerBinding
 import com.example.yourcarsevice.model.room.Part
 
 class MyItemRecyclerViewAdapter : RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder>() {
@@ -19,10 +19,10 @@ class MyItemRecyclerViewAdapter : RecyclerView.Adapter<MyItemRecyclerViewAdapter
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val partListIemBinding = DataBindingUtil.inflate<FragmentItemBinding>(
-            LayoutInflater.from(parent.context), R.layout.fragment_item, parent, false
+        val fragmentItemBinding = DataBindingUtil.inflate<FragmentItemRecyclerBinding>(
+            LayoutInflater.from(parent.context), R.layout.fragment_item_recycler, parent, false
         )
-        return ViewHolder(partListIemBinding)
+        return ViewHolder(fragmentItemBinding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -32,7 +32,7 @@ class MyItemRecyclerViewAdapter : RecyclerView.Adapter<MyItemRecyclerViewAdapter
 
     override fun getItemCount(): Int = partsList.size
 
-    inner class ViewHolder(val fragmentItemBinding: FragmentItemBinding) : RecyclerView.ViewHolder(fragmentItemBinding.root) {
+    inner class ViewHolder(val fragmentItemBinding: FragmentItemRecyclerBinding) : RecyclerView.ViewHolder(fragmentItemBinding.root) {
         init {
             fragmentItemBinding.root.setOnClickListener {
                 val position = adapterPosition

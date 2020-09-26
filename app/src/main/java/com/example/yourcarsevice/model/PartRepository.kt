@@ -5,8 +5,8 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.yourcarsevice.service.RetrofitInstance
-import com.example.yourcarsevice.view.BEARER_TOKEN
-import com.example.yourcarsevice.view.PREFS_NAME
+import com.example.yourcarsevice.view.authorization.BEARER_TOKEN
+import com.example.yourcarsevice.view.authorization.PREFS_NAME
 import com.example.yourcarsevice.model.retrofit.party.PartApiRequest
 import com.example.yourcarsevice.model.retrofit.party.PartApiResponse
 import com.example.yourcarsevice.model.room.Part
@@ -51,7 +51,9 @@ class PartRepository(application: Application) {
     }
 
     fun deletePart(part: Part) {
-        partDao.deletePart(part)
+        GlobalScope.launch(Dispatchers.IO) {
+            partDao.deletePart(part)
+        }
     }
 
     fun getParts(): LiveData<List<Part>> {
@@ -64,7 +66,6 @@ class PartRepository(application: Application) {
         }
     }
 
-
     fun updatePart(part: Part) {
         GlobalScope.launch(Dispatchers.IO) {
             partDao.updatePart(part)
@@ -72,7 +73,6 @@ class PartRepository(application: Application) {
     }
 
     fun responseListPart() {
-        Log.i("responseListPart", "updateList: ok ")
         val call = retrofitInstance.getAllParts(
             "Bearer ${
                 sharedPrefs?.getString(
@@ -82,17 +82,14 @@ class PartRepository(application: Application) {
         )
         call.enqueue(object : Callback<List<PartApiResponse>> {
             override fun onFailure(call: Call<List<PartApiResponse>>, t: Throwable) {
-                Log.i("responseListPart", "onFailure: ${t.message} ")
             }
 
             override fun onResponse(call: Call<List<PartApiResponse>>, response: Response<List<PartApiResponse>>) {
-                Log.i("responseListPart", "onResponse: ${response.errorBody()?.string()} --- ${response.code()} ")
                 if (response.isSuccessful) {
                     if (response.body() != null) {
                         deleteAll()
                         val partApi = response.body()
                         partApi?.forEach {
-                            Log.i("responseListPart", "onResponse: ${it.partName} ")
                             val part = Part()
                             part.backendId = it.id
                             part.partUpdateDate = it.partUpdateDate
@@ -110,7 +107,6 @@ class PartRepository(application: Application) {
     }
 
     fun requestUpdatePart(partsMap: Map<String, List<PartApiRequest>>) {
-        Log.i("requestUpdatePart", "updateList: ok ")
         val partService = RetrofitInstance().getService()
         val call = partService.synchronizationPart(
             partsMap, "Bearer ${
@@ -119,10 +115,8 @@ class PartRepository(application: Application) {
                 )
             }"
         )
-        Log.i("requestUpdatePart", "updateList: ${call.request()} ")
         call.enqueue(object : Callback<ResponseBody> {
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Log.i("requestUpdatePart", "onFailure: ${t.message} ")
             }
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
@@ -133,7 +127,6 @@ class PartRepository(application: Application) {
                             val partSync = getPartBackendId(it.id!!)
                             partSync.isSync = true
                             updatePart(partSync)
-                            Log.i("requestUpdatePart", "onResponse: ${response.errorBody()?.string()} --- ${response.code()} ")
                         }
                     }
                 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/part_nav_graph"
+    app:startDestination="@id/PartListFragment">
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.yourcarsevice.view.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/action_settingsFragment_to_FirstFragment"
+            app:destination="@id/PartListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/PartListFragment"
+        android:name="com.example.yourcarsevice.view.partfragment.PartListFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_part_list">
+        <argument
+            android:name="backendId"
+            app:argType="string"
+            android:defaultValue="null"/>
+        <action
+            android:id="@+id/action_PartListFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_PartListFragment_to_AddAndEditFragment"
+            app:destination="@id/AddAndEditFragment" />
+        <action
+            android:id="@+id/action_PartListFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SecondFragment"
+        android:name="com.example.yourcarsevice.view.partfragment.SecondFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_second">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_PartListFragment"
+            app:destination="@id/PartListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/AddAndEditFragment"
+        android:name="com.example.yourcarsevice.view.partfragment.AddAndEditFragment"
+        android:label="@string/add_and_edit_fragment"
+        tools:layout="@layout/fragment_add_and_edit">
+
+        <action
+            android:id="@+id/action_AddAndEditFragment_to_PartListFragment"
+            app:destination="@id/PartListFragment" />
+        <argument
+            android:name="backendId"
+            app:argType="string"
+            android:defaultValue="null"/>
+    </fragment>
+
+</navigation>

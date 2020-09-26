@@ -2,16 +2,18 @@ package com.example.yourcarsevice.model
 
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.example.yourcarsevice.R
 import com.example.yourcarsevice.service.RetrofitInstance
-import com.example.yourcarsevice.view.BEARER_TOKEN
-import com.example.yourcarsevice.view.PREFS_NAME
+import com.example.yourcarsevice.view.authorization.BEARER_TOKEN
+import com.example.yourcarsevice.view.authorization.PREFS_NAME
 import com.example.yourcarsevice.model.retrofit.user.User
 import com.example.yourcarsevice.model.retrofit.user.UserTokenResponse
+import com.example.yourcarsevice.view.PartActivity
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,7 +28,7 @@ class UserRepository(val application: Application) {
         )
     }
 
-    fun loginUser(user: User, fragment: Fragment, registration:Boolean) {
+    fun loginUser(user: User) {
         val loginService = RetrofitInstance().getService()
         val call = loginService.loginUser(user)
         call.enqueue(object : Callback<UserTokenResponse> {
@@ -39,12 +41,13 @@ class UserRepository(val application: Application) {
                     if (userResponse != null) {
                         userResponse.bearer
                         sharedPrefs?.edit()?.putString(BEARER_TOKEN, userResponse.bearer)?.apply()
-                        // todo get token and fragment to part
+                        application.startActivity(Intent(application,PartActivity::class.java))
+                        /*// todo get token and fragment to part
                         if (registration){
                             NavHostFragment.findNavController(fragment).navigate(R.id.action_registrationFragment_to_partFragment)
                         }else{
                             NavHostFragment.findNavController(fragment).navigate(R.id.action_loginFragment_to_partFragment)
-                        }
+                        }*/
 
                     }
                 } else {

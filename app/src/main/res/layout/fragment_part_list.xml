@@ -8,7 +8,7 @@
 
         <variable
             name="clickHandlers"
-            type="com.example.yourcarsevice.view.PartItemFragment.PartItemFragmentClickHandlers" />
+            type="com.example.yourcarsevice.view.partfragment.PartListFragment.PartListFragmentClickHandlers" />
 
     </data>
 
@@ -20,7 +20,7 @@
         tools:context=".view.PartItemFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+            android:id="@+id/recycler_view2"
             android:name="com.example.yourcarsevice.fragment.ItemFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,26 +30,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/fragment_item" />
-        <!--app:layout_constraintBottom_toTopOf="@+id/button_synchronization"-->
+            tools:listitem="@layout/fragment_item_recycler" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/addAndEditFab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_margin="30dp"
-            android:onClick="@{clickHandlers::onFabClicked}"
+            android:layout_margin="50dp"
+            android:onClick="@{clickHandlers.onFabClicked}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_baseline_add_circle" />
 
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>
-
-

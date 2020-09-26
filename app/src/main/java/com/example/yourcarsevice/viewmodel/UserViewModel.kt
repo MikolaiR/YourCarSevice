@@ -12,17 +12,16 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     private val userRepository = UserRepository(application)
 
-    fun getTokenUser(user: User, fragment: Fragment, registration:Boolean) {
-        userRepository.loginUser(user,fragment,registration)
+    fun getTokenUser(user: User) {
+        userRepository.loginUser(user)
     }
 
-    fun registrationAndGetToken(user: User, fragment: Fragment, registration:Boolean) {
+    fun registrationAndGetToken(user: User) {
         GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Default) {
                 userRepository.registrationUser(user)
             }
-            Log.i("loginUser", "registrationAndGetToken: $user")
-            userRepository.loginUser(user,fragment,registration)
+            userRepository.loginUser(user)
         }
     }
 }

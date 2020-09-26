@@ -10,7 +10,7 @@ import com.example.yourcarsevice.model.PartRepository
 import com.example.yourcarsevice.model.room.Part
 import com.example.yourcarsevice.utils.SortList
 
-class PartItemFragmentViewModel(application: Application): AndroidViewModel(application) {
+class PartListFragmentViewModel(application: Application): AndroidViewModel(application) {
 
     private val partRepository = PartRepository(application)
     private val sortList = SortList()
@@ -19,7 +19,6 @@ class PartItemFragmentViewModel(application: Application): AndroidViewModel(appl
     fun getPartBackendID(backendID:String):Part{
         return partRepository.getPartBackendId(backendID)
     }
-
 
     fun getParts(): LiveData<List<Part>> {
         return partRepository.getParts()
@@ -33,14 +32,11 @@ class PartItemFragmentViewModel(application: Application): AndroidViewModel(appl
     }
 
     fun updatePart(part: Part){
-        part.isUpdate = true
         partRepository.updatePart(part)
     }
 
     fun synchronization(parts: List<Part>){
         partRepository.requestUpdatePart(sortList.listPartToMapPartApi(parts))
-
-
     }
 
     fun getPartListResponse(){
