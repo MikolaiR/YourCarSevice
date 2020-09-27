@@ -18,9 +18,9 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     fun registrationAndGetToken(user: User) {
         GlobalScope.launch(Dispatchers.IO) {
-            withContext(Dispatchers.Default) {
+           async {
                 userRepository.registrationUser(user)
-            }
+            }.await()
             userRepository.loginUser(user)
         }
     }

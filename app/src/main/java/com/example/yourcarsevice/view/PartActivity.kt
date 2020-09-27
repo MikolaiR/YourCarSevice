@@ -12,7 +12,8 @@ import com.example.yourcarsevice.R
 import com.example.yourcarsevice.view.authorization.BEARER_TOKEN
 import com.example.yourcarsevice.view.authorization.PREFS_NAME
 import com.example.yourcarsevice.viewmodel.PartListFragmentViewModel
-import kotlinx.android.synthetic.main.content_main.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.content_part.*
 
 class PartActivity : AppCompatActivity() {
 
@@ -29,6 +30,20 @@ class PartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_part)
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        findViewById<BottomNavigationView>(R.id.partNavigation).setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.item_bottom_navigation_part_list -> {
+                    NavHostFragment.findNavController(part_nav_host_fragment).navigate(R.id.action_StatisticFragment_to_PartListFragment)
+                    true
+                }
+                R.id.item_bottom_navigation_statistic -> {
+                    NavHostFragment.findNavController(part_nav_host_fragment).navigate(R.id.action_PartListFragment_to_StatisticFragment)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -38,18 +53,17 @@ class PartActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_settings -> {
-                NavHostFragment.findNavController(login_nav_host_fragment).navigate(R.id.action_PartListFragment_to_settingsFragment)
+            R.id.item_settings -> {
+                NavHostFragment.findNavController(part_nav_host_fragment).navigate(R.id.action_PartListFragment_to_SettingsFragment)
                 true
             }
-            R.id.synchronization -> {
+            R.id.item_synchronization -> {
                 partItemFragmentViewModel.getPartListResponse()
                 true
             }
-            R.id.exit_to_app -> {
+            R.id.item_log_out -> {
                 sharedPrefs.edit().remove(BEARER_TOKEN).apply()
                 startActivity(Intent(this,MainActivity::class.java))
-                //NavHostFragment.findNavController(nav_host_fragment).navigate(R.id.action_partFragment_to_loginFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -57,9 +71,3 @@ class PartActivity : AppCompatActivity() {
     }
 }
 
-
-/*
-findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-        .setAction("Action", null).show()
-}*/

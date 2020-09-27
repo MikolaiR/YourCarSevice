@@ -3,21 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.yourcarsevice.view.MainActivity">
     <item
-        android:id="@+id/synchronization"
+        android:id="@+id/item_synchronization"
         android:icon="@drawable/ic_baseline_cloud_upload_24"
-        android:orderInCategory="2"
-        android:title="@string/synchronization_parts"
-        app:showAsAction="ifRoom"
-        />
-    <item
-        android:id="@+id/exit_to_app"
-        android:icon="@drawable/ic_baseline_exit_to_app_24"
-        android:orderInCategory="3"
-        android:title="@string/exit"
-        app:showAsAction="always"/>
-    <item
-        android:id="@+id/action_settings"
         android:orderInCategory="1"
+        android:title="@string/synchronization_parts"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/item_log_out"
+        android:icon="@drawable/ic_baseline_exit_to_app_24"
+        android:title="@string/log_out"
+        android:orderInCategory="3"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/item_settings"
+        android:icon="@drawable/ic_baseline_settings_24"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:orderInCategory="2"
+        app:showAsAction="never"/>
 </menu>

@@ -65,17 +65,14 @@ class UserRepository(val application: Application) {
         call.enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
-                    Log.i("loginUser", "onResponse: isSuccessful ")
                     isSuccessful = true
                 } else {
                     val str = separatorForErrorMessenger(response.errorBody()?.string()!!)
-                    Log.i("loginUser", "onResponse: $str ")
                     Toast.makeText(application, str, Toast.LENGTH_SHORT)
                         .show()
                 }
             }
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Log.i("loginUser", "onFailure: ${t.message}")
                 Toast.makeText(application, "${t.message}", Toast.LENGTH_LONG).show()
             }
         })

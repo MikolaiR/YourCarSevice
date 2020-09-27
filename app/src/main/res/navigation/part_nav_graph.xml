@@ -5,44 +5,36 @@
     android:id="@+id/part_nav_graph"
     app:startDestination="@id/PartListFragment">
 
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.yourcarsevice.view.settings.SettingsFragment"
-        android:label="Settings"
-        tools:layout="@layout/fragment_setting">
-        <action
-            android:id="@+id/action_settingsFragment_to_FirstFragment"
-            app:destination="@id/PartListFragment" />
-    </fragment>
+
 
     <fragment
         android:id="@+id/PartListFragment"
         android:name="com.example.yourcarsevice.view.partfragment.PartListFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/part_list_fragment"
         tools:layout="@layout/fragment_part_list">
         <argument
             android:name="backendId"
             app:argType="string"
             android:defaultValue="null"/>
         <action
-            android:id="@+id/action_PartListFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_PartListFragment_to_StatisticFragment"
+            app:destination="@id/StatisticFragment" />
         <action
             android:id="@+id/action_PartListFragment_to_AddAndEditFragment"
             app:destination="@id/AddAndEditFragment" />
         <action
-            android:id="@+id/action_PartListFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            android:id="@+id/action_PartListFragment_to_SettingsFragment"
+            app:destination="@id/SettingsFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/SecondFragment"
+        android:id="@+id/StatisticFragment"
         android:name="com.example.yourcarsevice.view.partfragment.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:label="@string/statistics_fragment_label"
+        tools:layout="@layout/fragment_statistics">
 
         <action
-            android:id="@+id/action_SecondFragment_to_PartListFragment"
+            android:id="@+id/action_StatisticFragment_to_PartListFragment"
             app:destination="@id/PartListFragment" />
     </fragment>
 
@@ -59,6 +51,16 @@
             android:name="backendId"
             app:argType="string"
             android:defaultValue="null"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/SettingsFragment"
+        android:name="com.example.yourcarsevice.view.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/action_settingsFragment_to_PartListFragment"
+            app:destination="@id/PartListFragment" />
     </fragment>
 
 </navigation>
