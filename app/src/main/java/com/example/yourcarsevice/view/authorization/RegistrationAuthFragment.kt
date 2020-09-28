@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.viewModels
 import com.example.yourcarsevice.R
-import com.example.yourcarsevice.model.retrofit.user.User
+import com.example.yourcarsevice.models.retrofit.user.User
 import com.example.yourcarsevice.viewmodel.UserViewModel
 import com.google.android.material.textfield.TextInputLayout
-import kotlinx.android.synthetic.main.content_main.*
 
 const val PREFS_NAME = "token_prefs"
 const val BEARER_TOKEN = "token_bearer"

@@ -1,17 +1,16 @@
-package com.example.yourcarsevice.model
+package com.example.yourcarsevice.models
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.yourcarsevice.service.RetrofitInstance
 import com.example.yourcarsevice.view.authorization.BEARER_TOKEN
 import com.example.yourcarsevice.view.authorization.PREFS_NAME
-import com.example.yourcarsevice.model.retrofit.party.PartApiRequest
-import com.example.yourcarsevice.model.retrofit.party.PartApiResponse
-import com.example.yourcarsevice.model.room.Part
-import com.example.yourcarsevice.model.room.PartDao
-import com.example.yourcarsevice.model.room.PartDataBase
+import com.example.yourcarsevice.models.retrofit.party.PartApiRequest
+import com.example.yourcarsevice.models.retrofit.party.PartApiResponse
+import com.example.yourcarsevice.models.room.Part
+import com.example.yourcarsevice.models.room.PartDao
+import com.example.yourcarsevice.models.room.PartDataBase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

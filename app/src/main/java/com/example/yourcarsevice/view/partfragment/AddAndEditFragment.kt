@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.yourcarsevice.R
 import com.example.yourcarsevice.databinding.FragmentAddAndEditBinding
-import com.example.yourcarsevice.model.room.Part
+import com.example.yourcarsevice.models.room.Part
 import com.example.yourcarsevice.viewmodel.PartListFragmentViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

@@ -8,7 +8,7 @@
 
         <variable
             name="part"
-            type="com.example.yourcarsevice.model.room.Part" />
+            type="com.example.yourcarsevice.models.room.Part" />
 
 
     </data>
@@ -23,89 +23,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="8dp">
+            android:orientation="horizontal"
+            android:padding="16dp">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/work_performed"
-                android:textAllCaps="true"
-                android:textSize="16sp" />
+                android:text="@{part.partUpdateDate}"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView_part_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:layout_marginTop="16dp"
-                android:gravity="center_horizontal"
+                android:layout_marginStart="3dp"
                 android:text="@{part.partName}"
-                android:textAppearance="?attr/textAppearanceListItem" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="6dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Data:"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView_part_update_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-                    android:layout_weight="1"
-                    android:text="@{part.partUpdateDate}"
-                    android:textAppearance="?attr/textAppearanceListItem" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Millage:"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView_car_millage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-                    android:layout_weight="1"
-                    android:text="@{part.carMillage}"
-                    android:textAppearance="?attr/textAppearanceListItem" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:text="Price"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textView_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:gravity="end"
-                android:text="@{part.price}"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textStyle="italic" />
 
         </LinearLayout>
 
-
     </androidx.cardview.widget.CardView>
-
-
 </layout>
 

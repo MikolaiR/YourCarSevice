@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/StatisticFragment"
-        android:name="com.example.yourcarsevice.view.partfragment.SecondFragment"
+        android:name="com.example.yourcarsevice.view.partfragment.StatisticsPartFragment"
         android:label="@string/statistics_fragment_label"
         tools:layout="@layout/fragment_statistics">
 

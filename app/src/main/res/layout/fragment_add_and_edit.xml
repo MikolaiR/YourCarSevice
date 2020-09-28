@@ -11,7 +11,7 @@
 
         <variable
             name="part"
-            type="com.example.yourcarsevice.model.room.Part" />
+            type="com.example.yourcarsevice.models.room.Part" />
     </data>
 
     <LinearLayout

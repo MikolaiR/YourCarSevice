@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.yourcarsevice.R
 import com.example.yourcarsevice.databinding.FragmentAuthLoginBinding
-import com.example.yourcarsevice.model.retrofit.user.User
+import com.example.yourcarsevice.models.retrofit.user.User
 import com.example.yourcarsevice.view.PartActivity
 import com.example.yourcarsevice.viewmodel.UserViewModel
 

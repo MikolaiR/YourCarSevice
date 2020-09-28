@@ -1,4 +1,4 @@
-package com.example.yourcarsevice.model.room
+package com.example.yourcarsevice.models.room
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable

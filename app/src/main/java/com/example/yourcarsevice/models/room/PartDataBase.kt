@@ -1,4 +1,4 @@
-package com.example.yourcarsevice.model.room
+package com.example.yourcarsevice.models.room
 
 import android.content.Context
 import androidx.room.Database

@@ -1,8 +1,8 @@
 package com.example.yourcarsevice.utils
 
 import android.util.Log
-import com.example.yourcarsevice.model.retrofit.party.PartApiRequest
-import com.example.yourcarsevice.model.room.Part
+import com.example.yourcarsevice.models.retrofit.party.PartApiRequest
+import com.example.yourcarsevice.models.room.Part
 
 class SortList {
 

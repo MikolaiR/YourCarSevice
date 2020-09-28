@@ -1,4 +1,4 @@
-package com.example.yourcarsevice.model.retrofit.party
+package com.example.yourcarsevice.models.retrofit.party
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

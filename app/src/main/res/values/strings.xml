@@ -46,4 +46,9 @@
 
     <string name="part_list_fragment">part list fragment</string>
     <string name="statistics_fragment_label">statistics fragment label</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="reply_title">Default reply action</string>
 </resources>

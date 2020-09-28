@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.yourcarsevice.R
 import com.example.yourcarsevice.databinding.RecyclerItemPartBinding
-import com.example.yourcarsevice.model.room.Part
+import com.example.yourcarsevice.models.room.Part
 
 class MyItemRecyclerViewAdapter : RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder>() {
 

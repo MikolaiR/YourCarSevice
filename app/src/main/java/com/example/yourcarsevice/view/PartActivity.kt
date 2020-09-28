@@ -31,7 +31,7 @@ class PartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_part)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        findViewById<BottomNavigationView>(R.id.partNavigation).setOnNavigationItemSelectedListener {
+        findViewById<BottomNavigationView>(R.id.partBottomNavigation).setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.item_bottom_navigation_part_list -> {
                     NavHostFragment.findNavController(part_nav_host_fragment).navigate(R.id.action_StatisticFragment_to_PartListFragment)
@@ -54,7 +54,7 @@ class PartActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.item_settings -> {
-                NavHostFragment.findNavController(part_nav_host_fragment).navigate(R.id.action_PartListFragment_to_SettingsFragment)
+                startActivity(Intent(this,SettingsActivity::class.java))
                 true
             }
             R.id.item_synchronization -> {

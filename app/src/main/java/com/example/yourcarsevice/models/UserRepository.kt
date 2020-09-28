@@ -1,18 +1,14 @@
-package com.example.yourcarsevice.model
+package com.example.yourcarsevice.models
 
 import android.app.Application
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
-import com.example.yourcarsevice.R
 import com.example.yourcarsevice.service.RetrofitInstance
 import com.example.yourcarsevice.view.authorization.BEARER_TOKEN
 import com.example.yourcarsevice.view.authorization.PREFS_NAME
-import com.example.yourcarsevice.model.retrofit.user.User
-import com.example.yourcarsevice.model.retrofit.user.UserTokenResponse
+import com.example.yourcarsevice.models.retrofit.user.User
+import com.example.yourcarsevice.models.retrofit.user.UserTokenResponse
 import com.example.yourcarsevice.view.PartActivity
 import okhttp3.ResponseBody
 import retrofit2.Call

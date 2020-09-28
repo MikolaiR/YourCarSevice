@@ -1,9 +1,9 @@
 package com.example.yourcarsevice.service
 
-import com.example.yourcarsevice.model.retrofit.party.PartApiRequest
-import com.example.yourcarsevice.model.retrofit.party.PartApiResponse
-import com.example.yourcarsevice.model.retrofit.user.User
-import com.example.yourcarsevice.model.retrofit.user.UserTokenResponse
+import com.example.yourcarsevice.models.retrofit.party.PartApiRequest
+import com.example.yourcarsevice.models.retrofit.party.PartApiResponse
+import com.example.yourcarsevice.models.retrofit.user.User
+import com.example.yourcarsevice.models.retrofit.user.UserTokenResponse
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
