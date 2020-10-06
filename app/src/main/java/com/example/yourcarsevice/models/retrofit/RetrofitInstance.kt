@@ -1,4 +1,4 @@
-package com.example.yourcarsevice.service
+package com.example.yourcarsevice.models.retrofit
 
 import android.util.Log
 import retrofit2.Retrofit
@@ -10,7 +10,6 @@ class RetrofitInstance {
         private var retrofit: Retrofit? = null
         fun getService(): ApiService {
             if (retrofit == null){
-                Log.i("result", "getService: ON")
                 retrofit = Retrofit.Builder()
                     .addConverterFactory(MoshiConverterFactory.create())
                     .baseUrl(BASE_URL)

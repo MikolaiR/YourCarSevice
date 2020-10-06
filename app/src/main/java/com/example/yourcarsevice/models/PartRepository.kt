@@ -3,14 +3,14 @@ package com.example.yourcarsevice.models
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.example.yourcarsevice.service.RetrofitInstance
+import com.example.yourcarsevice.models.retrofit.RetrofitInstance
 import com.example.yourcarsevice.view.authorization.BEARER_TOKEN
 import com.example.yourcarsevice.view.authorization.PREFS_NAME
-import com.example.yourcarsevice.models.retrofit.party.PartApiRequest
 import com.example.yourcarsevice.models.retrofit.party.PartApiResponse
 import com.example.yourcarsevice.models.room.Part
 import com.example.yourcarsevice.models.room.PartDao
 import com.example.yourcarsevice.models.room.PartDataBase
+import com.example.yourcarsevice.utils.SortList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -21,22 +21,14 @@ import retrofit2.Response
 
 class PartRepository(application: Application) {
 
-    private var partDao: PartDao
+    private val sortList = SortList()
+    private val partDao: PartDao = PartDataBase.InstanceDataBase.getInstance(application).getPartDAO()
+    private val retrofitInstance = RetrofitInstance().getService()
     private val sharedPrefs by lazy {
         application.getSharedPreferences(
             PREFS_NAME,
             Context.MODE_PRIVATE
         )
-    }
-    private val retrofitInstance = RetrofitInstance().getService()
-
-
-    init {
-        val database =
-            PartDataBase.InstanceDataBase.getInstance(
-                application
-            )
-        partDao = database.getPartDAO()
     }
 
     fun getPartBackendId(backendId: String): Part {
@@ -69,6 +61,10 @@ class PartRepository(application: Application) {
         GlobalScope.launch(Dispatchers.IO) {
             partDao.updatePart(part)
         }
+    }
+
+    fun getListNotDelete(list: List<Part>): List<Part> {
+        return sortList.getListNotDelete(list)
     }
 
     fun responseListPart() {
@@ -105,7 +101,8 @@ class PartRepository(application: Application) {
         })
     }
 
-    fun requestUpdatePart(partsMap: Map<String, List<PartApiRequest>>) {
+    fun requestUpdatePart(list: List<Part>) {
+        val partsMap = sortList.listPartToMapPartApi(list)
         val partService = RetrofitInstance().getService()
         val call = partService.synchronizationPart(
             partsMap, "Bearer ${
@@ -126,6 +123,7 @@ class PartRepository(application: Application) {
                             val partSync = getPartBackendId(it.id!!)
                             partSync.isSync = true
                             updatePart(partSync)
+                            partDao.removeDeletedPart()
                         }
                     }
                 }

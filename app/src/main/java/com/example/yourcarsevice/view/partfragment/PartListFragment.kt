@@ -33,6 +33,7 @@ class PartListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         fragmentItemPartyBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_part_list,container,false)
         fragmentItemPartyBinding.clickHandlers = PartListFragmentClickHandlers()
         return fragmentItemPartyBinding.root
@@ -59,9 +60,7 @@ class PartListFragment : Fragment() {
 
         partAdapter.setOnItemClickListener(object : MyItemRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(part: Part) {
-                val backendId = part.backendId!!
-                val action = PartListFragmentDirections.actionPartListFragmentToAddAndEditFragment(backendId)
-                findNavController().navigate(action)
+                findNavController().navigate(PartListFragmentDirections.actionPartListFragmentToAddAndEditFragment(part.backendId!!))
             }
         })
 
@@ -84,20 +83,13 @@ class PartListFragment : Fragment() {
     private fun loadGenrePartsInList() {
         partViewModel.getParts().observe(viewLifecycleOwner, Observer {
             partViewModel.synchronization(it)
-            val currentList = mutableListOf<Part>()
-            for (part in it) {
-                if (!part.isDelete) {
-                    currentList.add(part)
-                }
-            }
-            partsList = currentList
+            partsList = partViewModel.getListNotDelete(it)
             fillRecyclerView()
         })
     }
 
     inner class PartListFragmentClickHandlers {
         fun onFabClicked(view: View) {
-            Toast.makeText(context, "onFabClick", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_PartListFragment_to_AddAndEditFragment)
         }
     }

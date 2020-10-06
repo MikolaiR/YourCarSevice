@@ -15,6 +15,9 @@ interface PartDao {
     @Delete
     fun deletePart(part: Part)
 
+    @Query("delete from parts_table where is_delete = 1")
+    fun removeDeletedPart()
+
     @Query("select * from parts_table")
     fun getAllPart(): LiveData<List<Part>>
 
@@ -24,6 +27,12 @@ interface PartDao {
     @Query("select * from parts_table where backend_id ==:backendId")
     fun getPartBackendId(backendId:String):Part
 
-    @Query("select * from parts_table where _id ==:id")
-    fun getPartId(id:String):Part
+    @Query("select * from parts_table where is_delete = 1")
+    fun getPartsIsDelete():List<Part>
+
+    @Query("select * from parts_table where is_update = 1")
+    fun getPartsIsUpdate():List<Part>
+
+    @Query("select * from parts_table where is_sync = 1")
+    fun getPartsIsSync():List<Part>
 }

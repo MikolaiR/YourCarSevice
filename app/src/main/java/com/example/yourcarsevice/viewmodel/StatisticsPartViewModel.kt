@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.example.yourcarsevice.models.PartRepository
 import com.example.yourcarsevice.models.room.Part
-import com.example.yourcarsevice.util.StatisticsLogic
+import com.example.yourcarsevice.models.util.StatisticsLogic
 
 class StatisticsPartViewModel(application: Application) : AndroidViewModel(application) {
 

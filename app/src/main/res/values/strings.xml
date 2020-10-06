@@ -14,13 +14,14 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="name_party">Name Party</string>
+    <string name="name_part">Name Part</string>
     <string name="part_update">Date Update</string>
     <string name="car_millage">Car Millage</string>
     <string name="price">Price</string>
     <string name="ok">OK</string>
     <string name="synchronization_parts">Synchronization parts</string>
     <string name="log_out">Log out</string>
+
     <!-- TODO Setting-->
     <string name="settings">Settings</string>
     <string name="theme">Theme</string>
@@ -36,7 +37,7 @@
     <string name="registration">Registration</string>
     <string name="email">Email</string>
     <string name="work_performed">work performed:</string>
-    <string name="title_activity_part">PartActivity</string>
+    <string name="title_activity_part">Part</string>
     <string name="add_and_edit_fragment">Add And Edit Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
@@ -46,9 +47,11 @@
 
     <string name="part_list_fragment">part list fragment</string>
     <string name="statistics_fragment_label">statistics fragment label</string>
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_settings">Settings</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="reply_title">Default reply action</string>
+    <string name="register">Register</string>
+    <string name="all_right_reserved_em_teem">all right reserved EM-teem</string>
 </resources>

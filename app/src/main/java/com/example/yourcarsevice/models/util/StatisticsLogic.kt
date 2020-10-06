@@ -1,4 +1,4 @@
-package com.example.yourcarsevice.util
+package com.example.yourcarsevice.models.util
 
 import com.example.yourcarsevice.models.room.Part
 

@@ -1,4 +1,4 @@
-package com.example.yourcarsevice.service
+package com.example.yourcarsevice.models.retrofit
 
 import com.example.yourcarsevice.models.retrofit.party.PartApiRequest
 import com.example.yourcarsevice.models.retrofit.party.PartApiResponse

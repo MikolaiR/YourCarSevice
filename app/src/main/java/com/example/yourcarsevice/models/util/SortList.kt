@@ -55,4 +55,14 @@ class SortList {
         requestMap["create"] = syncList
         return requestMap
     }
+
+    fun getListNotDelete(list: List<Part>):List<Part>{
+        val outList = mutableListOf<Part>()
+        for (part in list) {
+            if (!part.isDelete) {
+                outList.add(part)
+            }
+        }
+        return outList
+    }
 }

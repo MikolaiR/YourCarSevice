@@ -4,10 +4,10 @@
     tools:context="com.example.yourcarsevice.view.MainActivity">
     <item
         android:id="@+id/item_synchronization"
-        android:icon="@drawable/ic_baseline_cloud_upload_24"
+        android:icon="@drawable/ic_baseline_cloud_download_24"
         android:orderInCategory="1"
         android:title="@string/synchronization_parts"
-        app:showAsAction="never"/>
+        app:showAsAction="always"/>
     <item
         android:id="@+id/item_log_out"
         android:icon="@drawable/ic_baseline_exit_to_app_24"

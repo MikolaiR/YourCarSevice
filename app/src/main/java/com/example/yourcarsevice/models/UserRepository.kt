@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
-import com.example.yourcarsevice.service.RetrofitInstance
+import com.example.yourcarsevice.models.retrofit.RetrofitInstance
 import com.example.yourcarsevice.view.authorization.BEARER_TOKEN
 import com.example.yourcarsevice.view.authorization.PREFS_NAME
 import com.example.yourcarsevice.models.retrofit.user.User
@@ -31,20 +31,14 @@ class UserRepository(val application: Application) {
             override fun onFailure(call: Call<UserTokenResponse>, t: Throwable) {
                 Toast.makeText(application, " ${t.message}", Toast.LENGTH_LONG).show()
             }
+
             override fun onResponse(call: Call<UserTokenResponse>, response: Response<UserTokenResponse>) {
                 if (response.isSuccessful) {
                     val userResponse = response.body()
                     if (userResponse != null) {
                         userResponse.bearer
                         sharedPrefs?.edit()?.putString(BEARER_TOKEN, userResponse.bearer)?.apply()
-                        application.startActivity(Intent(application,PartActivity::class.java))
-                        /*// todo get token and fragment to part
-                        if (registration){
-                            NavHostFragment.findNavController(fragment).navigate(R.id.action_registrationFragment_to_partFragment)
-                        }else{
-                            NavHostFragment.findNavController(fragment).navigate(R.id.action_loginFragment_to_partFragment)
-                        }*/
-
+                        application.startActivity(Intent(application, PartActivity::class.java))
                     }
                 } else {
                     val str = separatorForErrorMessenger(response.errorBody()?.string()!!)
@@ -54,7 +48,7 @@ class UserRepository(val application: Application) {
         })
     }
 
-    fun registrationUser(user: User):Boolean {
+    fun registrationUser(user: User): Boolean {
         var isSuccessful = false
         val loginService = RetrofitInstance().getService()
         val call = loginService.registrationUser(user)
@@ -68,6 +62,7 @@ class UserRepository(val application: Application) {
                         .show()
                 }
             }
+
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 Toast.makeText(application, "${t.message}", Toast.LENGTH_LONG).show()
             }
