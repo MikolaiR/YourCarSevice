@@ -38,7 +38,9 @@ class UserRepository(val application: Application) {
                     if (userResponse != null) {
                         userResponse.bearer
                         sharedPrefs?.edit()?.putString(BEARER_TOKEN, userResponse.bearer)?.apply()
-                        application.startActivity(Intent(application, PartActivity::class.java))
+                        val intent = Intent(application.applicationContext, PartActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                        application.startActivity(intent)
                     }
                 } else {
                     val str = separatorForErrorMessenger(response.errorBody()?.string()!!)
@@ -64,7 +66,7 @@ class UserRepository(val application: Application) {
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Toast.makeText(application, "${t.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@UserRepository.application, "${t.message}", Toast.LENGTH_LONG).show()
             }
         })
         return isSuccessful

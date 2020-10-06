@@ -11,20 +11,23 @@ class StatisticsLogic {
     }
 
     fun getTotalMillage(list: List<Part>): Int {
-        var startMillage = list[0].carMillage?.toInt()!!
-        var endMillage = 0
-        list.forEach {
-            if (it.carMillage?.toInt()!! < startMillage) {
-                startMillage = it.carMillage?.toInt()!!
+        if (list.isNotEmpty()) {
+            var startMillage = list[0].carMillage?.toInt()!!
+            var endMillage = 0
+            list.forEach {
+                if (it.carMillage?.toInt()!! < startMillage) {
+                    startMillage = it.carMillage?.toInt()!!
+                }
+                if (it.carMillage?.toInt()!! > endMillage) {
+                    endMillage = it.carMillage?.toInt()!!
+                }
             }
-            if (it.carMillage?.toInt()!! > endMillage) {
-                endMillage = it.carMillage?.toInt()!!
-            }
+            return endMillage - startMillage
         }
-        return endMillage - startMillage
+        return 0
     }
 
-    fun getKilometerOfTravel(list: List<Part>):Double{
+    fun getKilometerOfTravel(list: List<Part>): Double {
         val millage = getTotalMillage(list)
         val totalAmount = getTotalAmount(list)
         return totalAmount / millage

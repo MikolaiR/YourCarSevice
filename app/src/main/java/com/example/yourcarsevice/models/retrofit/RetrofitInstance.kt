@@ -1,10 +1,9 @@
 package com.example.yourcarsevice.models.retrofit
 
-import android.util.Log
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-private const val BASE_URL = "http://fathomless-ocean-27361.herokuapp.com/"
+private const val BASE_URL = "https://fathomless-ocean-27361.herokuapp.com/"
 
 class RetrofitInstance {
         private var retrofit: Retrofit? = null
